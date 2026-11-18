@@ -1,0 +1,6 @@
+{
+  "name": "Student Performance Prediction Using Machine Learning",
+  "description": "Academic analytics and machine learning prediction system powered by Python Flask, Scikit-learn (Linear Regression & Random Forest Regression), Pandas, SQLite, and Chart.js.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

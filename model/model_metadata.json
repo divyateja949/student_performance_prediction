@@ -1,0 +1,803 @@
+{
+  "data_source": "CSV Dataset",
+  "train_samples": 440,
+  "test_samples": 110,
+  "split_ratio": "80% Train / 20% Test",
+  "features": [
+    "attendance_percentage",
+    "study_hours_per_day",
+    "previous_exam_marks",
+    "assignment_score",
+    "internal_assessment_marks"
+  ],
+  "target": "final_exam_marks",
+  "preprocessing": {
+    "raw_rows": 550,
+    "cleaned_rows": 550,
+    "duplicates_removed": 0,
+    "missing_values_detected": 16,
+    "missing_by_column": {
+      "attendance_percentage": 5,
+      "study_hours_per_day": 2,
+      "previous_exam_marks": 3,
+      "assignment_score": 4,
+      "internal_assessment_marks": 2,
+      "final_exam_marks": 0
+    },
+    "missing_values_after_cleaning": 0,
+    "imputation_strategy": "Median Imputation (Pandas)",
+    "imputation_values": {
+      "attendance_percentage": 79.5,
+      "study_hours_per_day": 3.8,
+      "previous_exam_marks": 68.9,
+      "assignment_score": 74.6,
+      "internal_assessment_marks": 71.8
+    }
+  },
+  "eda": {
+    "correlations_with_final_marks": {
+      "attendance_percentage": 0.8388,
+      "study_hours_per_day": 0.8707,
+      "previous_exam_marks": 0.8858,
+      "assignment_score": 0.8679,
+      "internal_assessment_marks": 0.8961
+    },
+    "summary_statistics": {
+      "attendance_percentage": {
+        "mean": 76.79,
+        "std": 14.59,
+        "min": 35.0,
+        "median": 79.5,
+        "max": 100.0
+      },
+      "study_hours_per_day": {
+        "mean": 3.85,
+        "std": 1.76,
+        "min": 0.5,
+        "median": 3.8,
+        "max": 8.4
+      },
+      "previous_exam_marks": {
+        "mean": 66.6,
+        "std": 16.23,
+        "min": 24.3,
+        "median": 68.9,
+        "max": 99.0
+      },
+      "assignment_score": {
+        "mean": 71.99,
+        "std": 15.88,
+        "min": 26.1,
+        "median": 74.6,
+        "max": 100.0
+      },
+      "internal_assessment_marks": {
+        "mean": 69.22,
+        "std": 15.83,
+        "min": 22.0,
+        "median": 71.8,
+        "max": 99.0
+      },
+      "final_exam_marks": {
+        "mean": 74.21,
+        "std": 16.94,
+        "min": 36.4,
+        "median": 76.7,
+        "max": 99.5
+      }
+    }
+  },
+  "models": {
+    "linear_regression": {
+      "name": "Linear Regression",
+      "metrics": {
+        "mae": 2.494,
+        "mse": 10.0659,
+        "rmse": 3.1727,
+        "r2": 0.9606
+      },
+      "intercept": 1.4954
+    },
+    "random_forest": {
+      "name": "Random Forest Regression",
+      "metrics": {
+        "mae": 2.9391,
+        "mse": 13.6918,
+        "rmse": 3.7002,
+        "r2": 0.9464
+      },
+      "n_estimators": 180,
+      "max_depth": 10
+    }
+  },
+  "selected_model": {
+    "key": "linear_regression",
+    "name": "Linear Regression",
+    "reason": "Linear Regression outperformed Random Forest Regression with higher R\u00b2 (0.9606 vs 0.9464) and lower RMSE (3.1727 vs 3.7002).",
+    "metrics": {
+      "mae": 2.494,
+      "mse": 10.0659,
+      "rmse": 3.1727,
+      "r2": 0.9606
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "attendance_percentage",
+      "label": "Attendance (%)",
+      "random_forest_importance": 0.0422,
+      "linear_regression_weight": 0.1288,
+      "linear_coefficient": 0.1594
+    },
+    {
+      "feature": "study_hours_per_day",
+      "label": "Study Hours / Day",
+      "random_forest_importance": 0.1257,
+      "linear_regression_weight": 0.2522,
+      "linear_coefficient": 2.6749
+    },
+    {
+      "feature": "previous_exam_marks",
+      "label": "Previous Exam Marks",
+      "random_forest_importance": 0.3493,
+      "linear_regression_weight": 0.2042,
+      "linear_coefficient": 0.2364
+    },
+    {
+      "feature": "assignment_score",
+      "label": "Assignment Score",
+      "random_forest_importance": 0.1523,
+      "linear_regression_weight": 0.1945,
+      "linear_coefficient": 0.2282
+    },
+    {
+      "feature": "internal_assessment_marks",
+      "label": "Internal Assessment",
+      "random_forest_importance": 0.3305,
+      "linear_regression_weight": 0.2204,
+      "linear_coefficient": 0.2595
+    }
+  ],
+  "actual_vs_predicted": [
+    {
+      "student_id": "STU1196",
+      "student_name": "Liam Thomas",
+      "actual": 89.1,
+      "linear_predicted": 91.83,
+      "rf_predicted": 90.36,
+      "best_predicted": 91.83
+    },
+    {
+      "student_id": "STU1080",
+      "student_name": "Nathan Lopez",
+      "actual": 83.6,
+      "linear_predicted": 77.99,
+      "rf_predicted": 77.83,
+      "best_predicted": 77.99
+    },
+    {
+      "student_id": "STU1481",
+      "student_name": "Sophia Das",
+      "actual": 68.3,
+      "linear_predicted": 74.76,
+      "rf_predicted": 74.6,
+      "best_predicted": 74.76
+    },
+    {
+      "student_id": "STU1110",
+      "student_name": "Leo Turner",
+      "actual": 84.4,
+      "linear_predicted": 83.23,
+      "rf_predicted": 81.01,
+      "best_predicted": 83.23
+    },
+    {
+      "student_id": "STU1523",
+      "student_name": "Meera Roberts",
+      "actual": 53.4,
+      "linear_predicted": 58.08,
+      "rf_predicted": 57.65,
+      "best_predicted": 58.08
+    },
+    {
+      "student_id": "STU1533",
+      "student_name": "Gabriel Adams",
+      "actual": 76.0,
+      "linear_predicted": 78.5,
+      "rf_predicted": 78.83,
+      "best_predicted": 78.5
+    },
+    {
+      "student_id": "STU1085",
+      "student_name": "Leila Garcia",
+      "actual": 40.0,
+      "linear_predicted": 43.83,
+      "rf_predicted": 46.82,
+      "best_predicted": 43.83
+    },
+    {
+      "student_id": "STU1369",
+      "student_name": "Vikram Brown",
+      "actual": 57.5,
+      "linear_predicted": 57.03,
+      "rf_predicted": 58.24,
+      "best_predicted": 57.03
+    },
+    {
+      "student_id": "STU1133",
+      "student_name": "Grace Jackson",
+      "actual": 79.8,
+      "linear_predicted": 77.28,
+      "rf_predicted": 77.13,
+      "best_predicted": 77.28
+    },
+    {
+      "student_id": "STU1365",
+      "student_name": "Isaac Thomas",
+      "actual": 76.7,
+      "linear_predicted": 77.93,
+      "rf_predicted": 78.63,
+      "best_predicted": 77.93
+    },
+    {
+      "student_id": "STU1185",
+      "student_name": "Liam Lewis",
+      "actual": 56.5,
+      "linear_predicted": 60.51,
+      "rf_predicted": 62.98,
+      "best_predicted": 60.51
+    },
+    {
+      "student_id": "STU1011",
+      "student_name": "Aria Wright",
+      "actual": 47.1,
+      "linear_predicted": 44.43,
+      "rf_predicted": 45.06,
+      "best_predicted": 44.43
+    },
+    {
+      "student_id": "STU1074",
+      "student_name": "Sophia Rao",
+      "actual": 68.3,
+      "linear_predicted": 67.91,
+      "rf_predicted": 65.6,
+      "best_predicted": 67.91
+    },
+    {
+      "student_id": "STU1221",
+      "student_name": "Gabriel Turner",
+      "actual": 39.8,
+      "linear_predicted": 47.62,
+      "rf_predicted": 45.58,
+      "best_predicted": 47.62
+    },
+    {
+      "student_id": "STU1279",
+      "student_name": "Zara Roberts",
+      "actual": 45.5,
+      "linear_predicted": 44.08,
+      "rf_predicted": 44.21,
+      "best_predicted": 44.08
+    },
+    {
+      "student_id": "STU1083",
+      "student_name": "Layla Walker",
+      "actual": 77.7,
+      "linear_predicted": 80.8,
+      "rf_predicted": 79.84,
+      "best_predicted": 80.8
+    },
+    {
+      "student_id": "STU1383",
+      "student_name": "Ananya Chen",
+      "actual": 77.1,
+      "linear_predicted": 81.4,
+      "rf_predicted": 79.63,
+      "best_predicted": 81.4
+    },
+    {
+      "student_id": "STU1007",
+      "student_name": "Aria Rodriguez",
+      "actual": 61.4,
+      "linear_predicted": 58.81,
+      "rf_predicted": 60.35,
+      "best_predicted": 58.81
+    },
+    {
+      "student_id": "STU1219",
+      "student_name": "Isaac Green",
+      "actual": 40.9,
+      "linear_predicted": 43.26,
+      "rf_predicted": 48.94,
+      "best_predicted": 43.26
+    },
+    {
+      "student_id": "STU1449",
+      "student_name": "Ruby Perez",
+      "actual": 94.7,
+      "linear_predicted": 86.82,
+      "rf_predicted": 86.42,
+      "best_predicted": 86.82
+    },
+    {
+      "student_id": "STU1397",
+      "student_name": "Oliver Mehta",
+      "actual": 99.5,
+      "linear_predicted": 96.27,
+      "rf_predicted": 95.81,
+      "best_predicted": 96.27
+    },
+    {
+      "student_id": "STU1168",
+      "student_name": "Aria Lopez",
+      "actual": 97.3,
+      "linear_predicted": 97.16,
+      "rf_predicted": 96.8,
+      "best_predicted": 97.16
+    },
+    {
+      "student_id": "STU1469",
+      "student_name": "Zara Verma",
+      "actual": 87.6,
+      "linear_predicted": 87.08,
+      "rf_predicted": 86.07,
+      "best_predicted": 87.08
+    },
+    {
+      "student_id": "STU1173",
+      "student_name": "Caleb King",
+      "actual": 76.4,
+      "linear_predicted": 77.33,
+      "rf_predicted": 76.86,
+      "best_predicted": 77.33
+    },
+    {
+      "student_id": "STU1082",
+      "student_name": "Nathan Clark",
+      "actual": 80.7,
+      "linear_predicted": 80.66,
+      "rf_predicted": 81.83,
+      "best_predicted": 80.66
+    },
+    {
+      "student_id": "STU1546",
+      "student_name": "Owen Rao",
+      "actual": 71.2,
+      "linear_predicted": 72.53,
+      "rf_predicted": 73.4,
+      "best_predicted": 72.53
+    },
+    {
+      "student_id": "STU1186",
+      "student_name": "Hannah Thomas",
+      "actual": 75.5,
+      "linear_predicted": 76.07,
+      "rf_predicted": 75.1,
+      "best_predicted": 76.07
+    },
+    {
+      "student_id": "STU1290",
+      "student_name": "Aisha Clark",
+      "actual": 79.4,
+      "linear_predicted": 77.57,
+      "rf_predicted": 76.78,
+      "best_predicted": 77.57
+    },
+    {
+      "student_id": "STU1507",
+      "student_name": "Caleb Das",
+      "actual": 92.1,
+      "linear_predicted": 91.28,
+      "rf_predicted": 94.24,
+      "best_predicted": 91.28
+    },
+    {
+      "student_id": "STU1508",
+      "student_name": "Hannah Rao",
+      "actual": 49.5,
+      "linear_predicted": 51.96,
+      "rf_predicted": 51.13,
+      "best_predicted": 51.96
+    },
+    {
+      "student_id": "STU1251",
+      "student_name": "Caleb Rao",
+      "actual": 61.9,
+      "linear_predicted": 65.29,
+      "rf_predicted": 64.64,
+      "best_predicted": 65.29
+    },
+    {
+      "student_id": "STU1482",
+      "student_name": "Eva Brown",
+      "actual": 99.2,
+      "linear_predicted": 94.91,
+      "rf_predicted": 95.08,
+      "best_predicted": 94.91
+    },
+    {
+      "student_id": "STU1329",
+      "student_name": "Henry Young",
+      "actual": 80.0,
+      "linear_predicted": 77.85,
+      "rf_predicted": 75.49,
+      "best_predicted": 77.85
+    },
+    {
+      "student_id": "STU1073",
+      "student_name": "Vikram Kim",
+      "actual": 82.9,
+      "linear_predicted": 88.05,
+      "rf_predicted": 86.71,
+      "best_predicted": 88.05
+    },
+    {
+      "student_id": "STU1149",
+      "student_name": "Diya Perez",
+      "actual": 64.9,
+      "linear_predicted": 64.57,
+      "rf_predicted": 63.95,
+      "best_predicted": 64.57
+    },
+    {
+      "student_id": "STU1077",
+      "student_name": "Isaac Allen",
+      "actual": 77.6,
+      "linear_predicted": 75.07,
+      "rf_predicted": 76.36,
+      "best_predicted": 75.07
+    },
+    {
+      "student_id": "STU1003",
+      "student_name": "Aarav Singh",
+      "actual": 85.4,
+      "linear_predicted": 85.09,
+      "rf_predicted": 87.87,
+      "best_predicted": 85.09
+    },
+    {
+      "student_id": "STU1166",
+      "student_name": "Vikram Lopez",
+      "actual": 84.6,
+      "linear_predicted": 84.49,
+      "rf_predicted": 83.7,
+      "best_predicted": 84.49
+    },
+    {
+      "student_id": "STU1417",
+      "student_name": "Layla Lopez",
+      "actual": 84.3,
+      "linear_predicted": 81.53,
+      "rf_predicted": 82.93,
+      "best_predicted": 81.53
+    },
+    {
+      "student_id": "STU1429",
+      "student_name": "Grace Das",
+      "actual": 85.1,
+      "linear_predicted": 80.15,
+      "rf_predicted": 79.52,
+      "best_predicted": 80.15
+    },
+    {
+      "student_id": "STU1200",
+      "student_name": "Chloe Martinez",
+      "actual": 72.4,
+      "linear_predicted": 71.03,
+      "rf_predicted": 72.77,
+      "best_predicted": 71.03
+    },
+    {
+      "student_id": "STU1210",
+      "student_name": "Ruby Turner",
+      "actual": 99.5,
+      "linear_predicted": 100.0,
+      "rf_predicted": 99.22,
+      "best_predicted": 100.0
+    },
+    {
+      "student_id": "STU1355",
+      "student_name": "Caleb Das",
+      "actual": 82.5,
+      "linear_predicted": 78.38,
+      "rf_predicted": 80.11,
+      "best_predicted": 78.38
+    },
+    {
+      "student_id": "STU1078",
+      "student_name": "Samuel Hall",
+      "actual": 87.8,
+      "linear_predicted": 89.18,
+      "rf_predicted": 86.67,
+      "best_predicted": 89.18
+    },
+    {
+      "student_id": "STU1154",
+      "student_name": "Ananya Patel",
+      "actual": 81.7,
+      "linear_predicted": 76.65,
+      "rf_predicted": 76.32,
+      "best_predicted": 76.65
+    },
+    {
+      "student_id": "STU1387",
+      "student_name": "Aditya Mehta",
+      "actual": 99.5,
+      "linear_predicted": 95.28,
+      "rf_predicted": 94.9,
+      "best_predicted": 95.28
+    },
+    {
+      "student_id": "STU1522",
+      "student_name": "Aria Iyer",
+      "actual": 91.9,
+      "linear_predicted": 92.04,
+      "rf_predicted": 92.36,
+      "best_predicted": 92.04
+    },
+    {
+      "student_id": "STU1509",
+      "student_name": "Leo Malhotra",
+      "actual": 69.4,
+      "linear_predicted": 73.21,
+      "rf_predicted": 73.58,
+      "best_predicted": 73.21
+    },
+    {
+      "student_id": "STU1281",
+      "student_name": "Meera Perez",
+      "actual": 90.5,
+      "linear_predicted": 90.59,
+      "rf_predicted": 90.29,
+      "best_predicted": 90.59
+    },
+    {
+      "student_id": "STU1513",
+      "student_name": "Mateo Davis",
+      "actual": 76.8,
+      "linear_predicted": 80.14,
+      "rf_predicted": 81.03,
+      "best_predicted": 80.14
+    },
+    {
+      "student_id": "STU1395",
+      "student_name": "Isha Rodriguez",
+      "actual": 86.0,
+      "linear_predicted": 83.38,
+      "rf_predicted": 79.24,
+      "best_predicted": 83.38
+    },
+    {
+      "student_id": "STU1071",
+      "student_name": "Henry Baker",
+      "actual": 98.8,
+      "linear_predicted": 97.59,
+      "rf_predicted": 97.9,
+      "best_predicted": 97.59
+    },
+    {
+      "student_id": "STU1211",
+      "student_name": "Siddharth Iyer",
+      "actual": 83.1,
+      "linear_predicted": 83.7,
+      "rf_predicted": 83.5,
+      "best_predicted": 83.7
+    },
+    {
+      "student_id": "STU1371",
+      "student_name": "Daniel Sharma",
+      "actual": 36.4,
+      "linear_predicted": 41.99,
+      "rf_predicted": 44.55,
+      "best_predicted": 41.99
+    },
+    {
+      "student_id": "STU1320",
+      "student_name": "Elena Chen",
+      "actual": 81.1,
+      "linear_predicted": 82.61,
+      "rf_predicted": 83.73,
+      "best_predicted": 82.61
+    },
+    {
+      "student_id": "STU1056",
+      "student_name": "Eva Rodriguez",
+      "actual": 93.5,
+      "linear_predicted": 90.88,
+      "rf_predicted": 88.29,
+      "best_predicted": 90.88
+    },
+    {
+      "student_id": "STU1537",
+      "student_name": "Hannah Scott",
+      "actual": 74.3,
+      "linear_predicted": 76.02,
+      "rf_predicted": 74.9,
+      "best_predicted": 76.02
+    },
+    {
+      "student_id": "STU1540",
+      "student_name": "Aarav Malhotra",
+      "actual": 42.9,
+      "linear_predicted": 43.35,
+      "rf_predicted": 45.79,
+      "best_predicted": 43.35
+    },
+    {
+      "student_id": "STU1087",
+      "student_name": "Iris Kim",
+      "actual": 67.8,
+      "linear_predicted": 66.08,
+      "rf_predicted": 65.41,
+      "best_predicted": 66.08
+    },
+    {
+      "student_id": "STU1454",
+      "student_name": "Tara Mehta",
+      "actual": 57.4,
+      "linear_predicted": 56.67,
+      "rf_predicted": 57.76,
+      "best_predicted": 56.67
+    },
+    {
+      "student_id": "STU1403",
+      "student_name": "Maya Young",
+      "actual": 68.2,
+      "linear_predicted": 69.34,
+      "rf_predicted": 70.44,
+      "best_predicted": 69.34
+    },
+    {
+      "student_id": "STU1239",
+      "student_name": "Hannah Das",
+      "actual": 80.5,
+      "linear_predicted": 78.97,
+      "rf_predicted": 80.06,
+      "best_predicted": 78.97
+    },
+    {
+      "student_id": "STU1031",
+      "student_name": "Aisha Joshi",
+      "actual": 84.9,
+      "linear_predicted": 86.34,
+      "rf_predicted": 85.11,
+      "best_predicted": 86.34
+    },
+    {
+      "student_id": "STU1178",
+      "student_name": "Eva Turner",
+      "actual": 70.2,
+      "linear_predicted": 64.9,
+      "rf_predicted": 63.47,
+      "best_predicted": 64.9
+    },
+    {
+      "student_id": "STU1105",
+      "student_name": "Aarav Clark",
+      "actual": 99.4,
+      "linear_predicted": 96.63,
+      "rf_predicted": 97.57,
+      "best_predicted": 96.63
+    },
+    {
+      "student_id": "STU1010",
+      "student_name": "Caleb Iyer",
+      "actual": 44.2,
+      "linear_predicted": 40.97,
+      "rf_predicted": 42.27,
+      "best_predicted": 40.97
+    },
+    {
+      "student_id": "STU1146",
+      "student_name": "Leila Miller",
+      "actual": 60.7,
+      "linear_predicted": 60.99,
+      "rf_predicted": 59.24,
+      "best_predicted": 60.99
+    },
+    {
+      "student_id": "STU1385",
+      "student_name": "Nora Allen",
+      "actual": 78.5,
+      "linear_predicted": 76.81,
+      "rf_predicted": 76.26,
+      "best_predicted": 76.81
+    },
+    {
+      "student_id": "STU1532",
+      "student_name": "Leila Patel",
+      "actual": 81.7,
+      "linear_predicted": 80.36,
+      "rf_predicted": 82.35,
+      "best_predicted": 80.36
+    },
+    {
+      "student_id": "STU1091",
+      "student_name": "Mateo Rodriguez",
+      "actual": 76.3,
+      "linear_predicted": 80.1,
+      "rf_predicted": 77.7,
+      "best_predicted": 80.1
+    },
+    {
+      "student_id": "STU1079",
+      "student_name": "Rohan Nair",
+      "actual": 71.7,
+      "linear_predicted": 69.48,
+      "rf_predicted": 68.46,
+      "best_predicted": 69.48
+    },
+    {
+      "student_id": "STU1517",
+      "student_name": "Chloe Scott",
+      "actual": 82.8,
+      "linear_predicted": 76.0,
+      "rf_predicted": 75.44,
+      "best_predicted": 76.0
+    },
+    {
+      "student_id": "STU1312",
+      "student_name": "Maya Rao",
+      "actual": 68.3,
+      "linear_predicted": 68.76,
+      "rf_predicted": 67.41,
+      "best_predicted": 68.76
+    },
+    {
+      "student_id": "STU1118",
+      "student_name": "Diya Wright",
+      "actual": 78.0,
+      "linear_predicted": 84.94,
+      "rf_predicted": 81.37,
+      "best_predicted": 84.94
+    },
+    {
+      "student_id": "STU1084",
+      "student_name": "Liam Taylor",
+      "actual": 92.5,
+      "linear_predicted": 90.28,
+      "rf_predicted": 91.89,
+      "best_predicted": 90.28
+    },
+    {
+      "student_id": "STU1382",
+      "student_name": "Henry Garcia",
+      "actual": 42.0,
+      "linear_predicted": 41.39,
+      "rf_predicted": 46.71,
+      "best_predicted": 41.39
+    },
+    {
+      "student_id": "STU1156",
+      "student_name": "Benjamin Mitchell",
+      "actual": 81.1,
+      "linear_predicted": 84.23,
+      "rf_predicted": 85.96,
+      "best_predicted": 84.23
+    },
+    {
+      "student_id": "STU1150",
+      "student_name": "Samuel Verma",
+      "actual": 63.8,
+      "linear_predicted": 63.64,
+      "rf_predicted": 62.79,
+      "best_predicted": 63.64
+    },
+    {
+      "student_id": "STU1539",
+      "student_name": "Iris Kulkarni",
+      "actual": 98.3,
+      "linear_predicted": 91.74,
+      "rf_predicted": 91.59,
+      "best_predicted": 91.74
+    },
+    {
+      "student_id": "STU1164",
+      "student_name": "Nathan Lopez",
+      "actual": 77.5,
+      "linear_predicted": 75.7,
+      "rf_predicted": 75.01,
+      "best_predicted": 75.7
+    }
+  ]
+}
